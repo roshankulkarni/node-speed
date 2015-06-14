@@ -16,10 +16,25 @@ Below is the list of capabilities supported by the Node Speed framework:
 + Tagging All Inbound Requests
 + Identifying Client Device Types
 
+## Framework Bootstrapping
+
++ Initialize Configuration Manager
++ Initialize Logger
++ Middlewares:
+  + Cookie Parser
+  + Body Parser
+  + Request Tagger
+  + User Agent Identifier
++ Configure DUST Engine
++ Instantiate All the Defined Mongo Models
++ Instantiate All Services
++ Mount Interceptors
++ Mount Controllers
+
 
 ## Framework Dependencies
 
-We've leveraged several popular and proven NPM modules from the community to assemble this framework together.
+We've stitched together several popular and proven NPM modules from the community to assemble this framework.
 
 ###1. Logger:
 https://github.com/nomiddlename/log4js-node
