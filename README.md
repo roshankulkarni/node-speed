@@ -1,24 +1,24 @@
 # NodeSpeed Framework
 
-# Dependencies Used by the Application Framework
+## Dependencies
 
-We're tried to leverage several popular and proven NPM modules from the community to put this framework together.
+We've leveraged several popular and proven NPM modules from the community to assemble this framework together.
 
-##1. Logger:
+###1. Logger:
 https://github.com/nomiddlename/log4js-node
 Apache 2.0 License
 
-##2. Configuration Manager:
+###2. Configuration Manager:
 https://github.com/lorenwest/node-config
 MIT License
 
-##3. Express JS:
+###3. Express JS:
 http://expressjs.com/
 
-##4. Underscore JS:
+###4. Underscore JS:
 http://underscorejs.org/
 
-##5. Adaro for Dust Templates:
+###5. Adaro for Dust Templates:
 https://github.com/krakenjs/adaro
 
 # Configuration of Logger
