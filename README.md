@@ -1,6 +1,23 @@
 # NodeSpeed Framework
 
-## Dependencies
+## Framework Structure
+
+Below is the list of capabilities supported by the Node Speed framework:
+
++ Request Controllers
++ Custom Request Interceptors
++ Services Layer
++ MongoDB Integration
++ Mongoose Based Data Models
++ Configuration Manager with Support for Multiple Environments
++ Logger with Log Rotation
++ Dust Template Integration
++ Delivery of Static Assets
++ Tagging All Inbound Requests
++ Identifying Client Device Types
+
+
+## Framework Dependencies
 
 We've leveraged several popular and proven NPM modules from the community to assemble this framework together.
 
@@ -27,25 +44,25 @@ https://github.com/krakenjs/adaro
 https://github.com/nomiddlename/log4js-node/wiki/Category-levels
 
 ### Supported Levels:
-ALL
-TRACE
-DEBUG
-INFO
-WARN
-ERROR
-FATAL
-OFF
++ ALL
++ TRACE
++ DEBUG
++ INFO
++ WARN
++ ERROR
++ FATAL
++ OFF
 
-# Auto Restarts Upon Code Change:
-https://github.com/remy/nodemon
+# Quick Dev-Debug Cycles
 
 Make your code-run-debug cycles go faster. Use nodemon to auto-restart your app upon code changes.
+https://github.com/remy/nodemon
 
 To install nodemon globally:
-$ sudo npm install -g nodemon
+	$ sudo npm install -g nodemon
 
 To run nodemon for your app:
-$ nodemon app.js
+	$ nodemon app.js
 
 # Authors
 
