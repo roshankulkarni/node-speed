@@ -4,7 +4,7 @@
 
 Below is the list of capabilities supported by the Node Speed framework:
 
-+ Request Controllers
++ Controllers to Handle Inbound Requests
 + Custom Request Interceptors
 + Services Layer
 + MongoDB Integration
@@ -25,7 +25,7 @@ Below is the list of capabilities supported by the Node Speed framework:
   + Body Parser
   + Request Tagger
   + User Agent Identifier
-+ Configure DUST Engine
++ Configure DUST Template Engine
 + Instantiate All the Defined Mongo Models
 + Instantiate All Services
 + Mount Interceptors
@@ -53,9 +53,9 @@ http://underscorejs.org/
 ###5. Adaro for Dust Templates:
 https://github.com/krakenjs/adaro
 
-# Configuration of Logger
+## Configuration of Logger
 
-## Category Levels:
+### Category Levels:
 https://github.com/nomiddlename/log4js-node/wiki/Category-levels
 
 ### Supported Levels:
@@ -68,17 +68,19 @@ https://github.com/nomiddlename/log4js-node/wiki/Category-levels
 + FATAL
 + OFF
 
-# Quick Dev-Debug Cycles
+## Quick Dev-Debug Cycles
 
 Make your code-run-debug cycles go faster. Use nodemon to auto-restart your app upon code changes.
 https://github.com/remy/nodemon
 
 To install nodemon globally:
+
 	$ sudo npm install -g nodemon
 
 To run nodemon for your app:
+
 	$ nodemon app.js
 
-# Authors
+## Authors
 
 Roshan Kulkarni, Mindstix Software Labs
