@@ -1,0 +1,4 @@
+<h1>User List</h1>
+{#userList}
+	{fName} {lName} <br/>
+{/userList}

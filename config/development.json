@@ -1,0 +1,28 @@
+/**
+ * Configuration: Development
+ * @author Mindstix Labs
+ */
+{
+	/* Web Server */
+	"server": {
+		"port": 3000
+	},
+	/* Log4JS Configuration Object */
+	"logger": {
+		"levels": {
+			"[all]": "DEBUG"
+		},
+		"appenders": [
+			{
+			"type": "console"
+			},
+			{
+			  "type": "dateFile",
+			  "filename": "logs/application",
+			  "pattern": "-yyyy-MM-dd.log",
+			  "alwaysIncludePattern": true
+			}
+		],
+	  "replaceConsole": true
+	}
+}

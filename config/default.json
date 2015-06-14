@@ -1,0 +1,34 @@
+/**
+ * Configuration: Default
+ * @author Mindstix Labs
+ */
+{
+	/* Web Server */
+	"server": {
+		"port": 3000
+	},
+	/* Log4JS Configuration Object */
+	"logger": {
+		"levels": {
+			"[all]": "ALL"
+		},
+		"appenders": [
+			{
+			"type": "console"
+			},
+			{
+			  "type": "dateFile",
+			  "filename": "logs/application",
+			  "pattern": "-yyyy-MM-dd.log",
+			  "alwaysIncludePattern": true
+			}
+		],
+	  "replaceConsole": true
+	},
+	/* Database */
+	"database": {
+		"host": "localhost",
+		"port": 27017,
+		"name": "myapp"
+	}
+}
