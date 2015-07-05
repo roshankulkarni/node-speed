@@ -28,7 +28,7 @@ Directory                       | Purpose
 /application/config/          | Config files.                           
 /application/routes/          | Route definitions for controllers and interceptors.                           
 /application/controllers/     | Controllers.                           
-/application/interceptors/    | Interceptors.                           
+/application/interceptors/    | Request interceptors.
 /application/services/        | Services to encapsulate business logic.                           
 /application/models/          | Mongoose schema and model definitions.                           
 /application/views/           | Dust template views.
