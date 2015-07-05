@@ -39,7 +39,8 @@ Directory                       | Purpose
 
 + Initialize Configuration Manager
 + Initialize Logger
-+ Middlewares:
++ Create Express App
++ Mount Middlewares:
   + Cookie Parser
   + Body Parser
   + Request Tagger
@@ -47,8 +48,8 @@ Directory                       | Purpose
 + Configure DUST Template Engine
 + Instantiate All the Defined Mongo Models
 + Instantiate All Services
-+ Mount Interceptors
-+ Mount Controllers
++ Mount Interceptors (Based on Route Definitions)
++ Mount Controllers (Based on Route Definitions)
 
 
 ## Framework Dependencies
@@ -103,14 +104,14 @@ To run nodemon for your app:
 
 ## Wishlist
 
-+ Version Support in Controllers
-+ Domain
++ Wrapping Requests in Domain
 + Utility to Validate Recursive JSON
-+ Utility to Map Recursive JSON
++ Front Validation Strategies for Inbound Requests
 + Connectors (Third Party Calls)
 + Front Layer Caching (Redis)
 + HTTP Request Logs / Audit Logs / Log Request
 + Request Stats
++ Utility to Map Recursive JSON
 
 
 ## Authors
