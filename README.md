@@ -1,7 +1,7 @@
-# NodeSpeed Framework
+# Welcome to NodeSpeed!
 
-NodeSpeed is a full stack application framework powered by Node.js. NodeSpeed helps you rapidly build
-mature REST APIs or micro-services in Node.js. It brings together the 'best of breed' components
+NodeSpeed is a full stack application framework (powered by Node.js) that helps you rapidly build
+enterprise-grade REST APIs or micro services in Node.js. It brings together the 'best of breed' components
 from the NPM community so that you accelerate your development of Node-powered middlewares and REST 
 services.
 
@@ -9,9 +9,9 @@ services.
 
 Below is the list of capabilities supported by the Node Speed framework:
 
-+ Controllers to Handle Inbound Requests
++ Controllers to Handle Inbound Requests (Route Mappings to Controllers)
 + Custom Request Interceptors
-+ Services Layer
++ Services Layer (To Encapsulate Your Business Logic)
 + MongoDB Integration
 + Mongoose Based Data Models
 + Configuration Manager with Support for Multiple Environments
@@ -21,7 +21,21 @@ Below is the list of capabilities supported by the Node Speed framework:
 + Tagging All Inbound Requests
 + Identifying Client Device Types
 
-## Framework Bootstrapping
+## Application Structure
+
+Directory                       | Purpose
+-------------------------------|----------------------------
+/application/config/          | Config files.                           
+/application/routes/          | Route definitions for controllers and interceptors.                           
+/application/controllers/     | Controllers.                           
+/application/interceptors/    | Interceptors.                           
+/application/services/        | Services to encapsulate business logic.                           
+/application/models/          | Mongoose schema and model definitions.                           
+/application/views/           | Dust template views.
+/application/public/          | Public static assets (CSS, JS, Images).
+				
+
+## Framework Bootstrapping Process
 
 + Initialize Configuration Manager
 + Initialize Logger
