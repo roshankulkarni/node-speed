@@ -11,8 +11,7 @@ var config = require('config');
 var logger = log4js.getLogger('UserService');
 
 // Models
-var connection = app.db.getConnection();
-var UserModel = connection.model('User');
+var UserModel = app.db.getModel('User');
 
 //
 // Create New User

@@ -1,18 +1,18 @@
 //
 // NodeSpeed Framework, MIT Licensed.
-// @author Mindstix Labs
+// @author Roshan Kulkarni, Mindstix Labs
 // 
 // DB Factory:
 // Establishes DB Connectivity and Initializes mongoose models during application's bootstrap.
 //
 
 // Dependencies
-// Dependencies
 var log4js = require('log4js');
 var path = require('path');
 var config = require('config');
 var fsWalk = require('fs-walk');
 var mongoose = require('mongoose');
+var _ = require('underscore');
 
 // Logger
 var logger = log4js.getLogger('DBFactory');
@@ -25,6 +25,22 @@ var connection;
 //
 function initialize(modelPath) {
 
+	// DB Enanbled?
+	var databaseConfig = config.get("database");
+	var status = config.get("database.status");
+
+	// DB Config Not Found?
+	if(_.isEmpty(databaseConfig)) {
+		logger.info("DB configuration not specfiied. Skipping MongoDB connection.");
+		return;
+	}
+
+	// DB Connectivity Not Active?
+	if(status !== "ACTIVE") {
+		logger.info("DB connectivity disabled. Skipping MongoDB connection.");
+		return;
+	}
+
 	// Setup MongoDB Connection
 	var host = config.get("database.host");
 	var port = config.get("database.port");
@@ -33,11 +49,11 @@ function initialize(modelPath) {
 	connection = mongoose.connect('mongodb://' + host + ':' + port + '/' + dbName);
 
 	// Error Handler
-	mongoose.connection.on('error', console.error.bind(console, 'DB Connection Error.'));
+	mongoose.connection.on('error', console.error.bind(console, 'DB connection error.'));
 
 	// Connection Success
 	mongoose.connection.once('open', function (callback) {
-	  logger.info("MongoDB Connection Successful.");
+	  logger.info("MongoDB connection successful.");
 	});
 
 	// Recursively Traverse modelPath to load all Models
@@ -67,10 +83,39 @@ function initialize(modelPath) {
 }
 
 //
-// Fetch Mongoose Model
+// Fetch Mongoose Connection
 // 
 function getConnection() {
 	return connection;
+}
+
+//
+// Fetch Mongoose model of the specified name
+// 
+function getModel(modelName) {
+
+	// Bad or unspecified model name?
+	if(_.isEmpty(modelName)) {
+		logger.info("Model name not specified. ");
+		return null;
+	}
+
+	// Connection exists?
+	if(_.isEmpty(connection)) {
+		logger.info("DB connection does not exist. Check MongoDB configuration.");
+		return null;		
+	}
+
+	var model = connection.model(modelName);
+
+	// Failed to obtain model?
+	if(_.isEmpty(model)) {
+		logger.info("Could not obtain model: %s", modelName);
+		return null;		
+	}
+
+	return model;
+
 }
 
 //
@@ -78,5 +123,6 @@ function getConnection() {
 //
 module.exports = {
 	initialize: initialize,
-	getConnection: getConnection
+	getConnection: getConnection,
+	getModel: getModel
 }

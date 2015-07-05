@@ -1,0 +1,9 @@
+{
+	"interceptors": [
+		{
+			"requestUri": "/user/*",
+			"httpMethod": "get",
+			"handler": "/MyInterceptor.doInterception"
+		}	
+	]
+}

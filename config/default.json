@@ -27,6 +27,7 @@
 	},
 	/* Database */
 	"database": {
+		"status": "INACTIVE",
 		"host": "localhost",
 		"port": 27017,
 		"name": "myapp"

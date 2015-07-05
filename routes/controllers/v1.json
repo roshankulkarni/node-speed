@@ -1,0 +1,13 @@
+{
+	"config": {
+		"prefix": "/v1",
+		"status": "ACTIVE"
+	},
+	"routes": [
+		{
+			"requestUri": "/user/fetchAll",
+			"httpMethod": "get",
+			"handler": "/v1/MyController.fetchAllUsers"
+		}	
+	]
+}

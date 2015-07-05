@@ -1,5 +1,16 @@
 # NodeSpeed Framework
 
+## Wishlist
+
++ Version Support in Controllers
++ Domain
++ Utility to Validate Recursive JSON
++ Utility to Map Recursive JSON
++ Connectors (Third Party Calls)
++ Front Layer Caching (Redis)
++ HTTP Request Logs / Audit Logs / Log Request
++ Request Stats
+
 ## Framework Structure
 
 Below is the list of capabilities supported by the Node Speed framework:

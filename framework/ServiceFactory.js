@@ -1,6 +1,6 @@
 //
 // NodeSpeed Framework, MIT License.
-// @author Mindstix Labs
+// @author Roshan Kulkarni, Mindstix Labs
 //
 // Service Factory:
 // Instantiates available services during application's bootstrap.

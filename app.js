@@ -1,6 +1,6 @@
 //
 // Entry point into the NodeSpeed Framework.
-// @author Mindstix Labs
+// @author Roshan Kulkarni, Mindstix Labs
 //
 
 // Dependencies
@@ -14,7 +14,6 @@ var uuid = require('uuid');
 var device = require("express-device");
 var fsWalk = require('fs-walk');
 var adaro = require('adaro');
-var mongoose = require('mongoose');
 
 // Framework Components
 var dbFactory = require('./framework/DBFactory');
@@ -22,8 +21,9 @@ var serviceFactory = require('./framework/ServiceFactory');
 var interceptorFactory = require('./framework/InterceptorFactory');
 var controllerFactory = require('./framework/ControllerFactory');
 
+
 //
-// Current Environment
+// Current Runtime Environment
 // Config module uses NODE_ENV variable to determine the configuration file to be loaded from the /config directory.
 //
 if (!process.env.NODE_ENV) {
@@ -33,13 +33,15 @@ console.log("Runtime Environment: %s", process.env.NODE_ENV);
 
 
 //
-// Directory Paths
+// Directory Paths (Framework Convention)
 //
 global.appRoot = __dirname;
 var modelPath = path.join(global.appRoot, "/models/");
 var servicePath = path.join(global.appRoot, "/services/");
 var interceptorPath = path.join(global.appRoot, "/interceptors/");
+var interceptorRoutesPath = path.join(global.appRoot, "/routes/interceptors/");
 var controllerPath = path.join(global.appRoot, "/controllers/");
+var controllerRoutesPath = path.join(global.appRoot, "/routes/controllers/");
 
 
 //
@@ -69,15 +71,13 @@ logger.info("Services: %s", servicePath);
 logger.info("Interceptors: %s", interceptorPath);
 logger.info("Controllers: %s", controllerPath);
 
+
 //
 // Instantiate Express Framework
 //
 var app = express();
 global.app = app;
 
-//
-// TODO: Middleware: Logging Raw HTTP Requests (If Enabled in Configuration) (Morgan?)
-//
 
 //
 // Middleware: Cookie Parser.
@@ -90,7 +90,6 @@ app.use(cookieParser());
 //
 // Middleware: Body Parser.
 // Parses the HTTP Body and populates the req.body.
-// TODO: Multer for Multi Part Body Contents.
 //
 app.use(bodyParser.json());
 
@@ -158,15 +157,15 @@ app.services.initialize(servicePath);
 // global.app.interceptors: Is a reference to the Interceptor Factory.
 //
 app.interceptors = interceptorFactory;
-app.interceptors.initialize(interceptorPath);
+app.interceptors.initialize(interceptorPath, interceptorRoutesPath);
 
 
 //
-// Mount All Controller Endpoints.
+// Initialize All Controllers. Mount All Routes to Respective Controller Methods.
 // global.app.controllers: Is a reference to the Controller Factory.
 //
 app.controllers = controllerFactory;
-app.controllers.initialize(controllerPath);
+app.controllers.initialize(controllerPath, controllerRoutesPath);
 
 
 //
