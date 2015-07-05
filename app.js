@@ -6,7 +6,6 @@
 // Dependencies
 var log4js = require('log4js'); 
 var path = require('path');
-var config = require('config');
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser  = require('body-parser');
@@ -15,15 +14,30 @@ var device = require("express-device");
 var fsWalk = require('fs-walk');
 var adaro = require('adaro');
 
-// Framework Components
-var dbFactory = require('./framework/DBFactory');
-var serviceFactory = require('./framework/ServiceFactory');
-var interceptorFactory = require('./framework/InterceptorFactory');
-var controllerFactory = require('./framework/ControllerFactory');
+
+//
+// Application Root
+//
+global.appRoot = __dirname;
+console.log("Application Root: %s", global.appRoot);
 
 
 //
-// Current Runtime Environment
+// Directory Paths (Framework's Convention)
+//
+var configPath = path.join(global.appRoot, "/application/config/");
+var controllerPath = path.join(global.appRoot, "/application/controllers/");
+var controllerRoutesPath = path.join(global.appRoot, "/application/routes/controllers/");
+var interceptorPath = path.join(global.appRoot, "/application/interceptors/");
+var interceptorRoutesPath = path.join(global.appRoot, "/application/routes/interceptors/");
+var modelPath = path.join(global.appRoot, "/application/models/");
+var servicePath = path.join(global.appRoot, "/application/services/");
+var publicResourcesPath = path.join(global.appRoot, "/application/public/");
+var viewsPath = path.join(global.appRoot, "/application/views/");
+
+
+//
+// Current Runtime Environment:
 // Config module uses NODE_ENV variable to determine the configuration file to be loaded from the /config directory.
 //
 if (!process.env.NODE_ENV) {
@@ -33,20 +47,14 @@ console.log("Runtime Environment: %s", process.env.NODE_ENV);
 
 
 //
-// Directory Paths (Framework Convention)
+// App Configuration:
+// node-config module uses the process.env.NODE_CONFIG_DIR to determine the config directory.
 //
-global.appRoot = __dirname;
-var modelPath = path.join(global.appRoot, "/models/");
-var servicePath = path.join(global.appRoot, "/services/");
-var interceptorPath = path.join(global.appRoot, "/interceptors/");
-var interceptorRoutesPath = path.join(global.appRoot, "/routes/interceptors/");
-var controllerPath = path.join(global.appRoot, "/controllers/");
-var controllerRoutesPath = path.join(global.appRoot, "/routes/controllers/");
-
-
-//
-// App Configuration
-//
+if (!process.env.NODE_CONFIG_DIR) {
+    process.env.NODE_CONFIG_DIR = configPath;
+} 
+console.log("Configuration Directory: %s", process.env.NODE_CONFIG_DIR);
+var config = require('config');
 console.log("Config Base: " + config.util.getEnv('NODE_CONFIG_DIR'));
 console.log("Config File: " + config.util.getEnv('NODE_ENV'));
 
@@ -59,18 +67,27 @@ log4js.configure(loggerConfig);
 
 
 //
+// Framework Components
+//
+var dbFactory = require('./framework/DBFactory');
+var serviceFactory = require('./framework/ServiceFactory');
+var interceptorFactory = require('./framework/InterceptorFactory');
+var controllerFactory = require('./framework/ControllerFactory');
+
+
+//
 // Dump Environment Information
 //
 var logger = log4js.getLogger('ApplicationBootstrap');
 logger.info("Environment: %s", process.env.NODE_ENV);
 logger.info("AppRoot: %s", global.appRoot);
 logger.info("Config Base: %s", config.util.getEnv('NODE_CONFIG_DIR'));
-logger.info("Config File: %s", config.util.getEnv('NODE_ENV'));
+logger.info("Current Environment: %s", config.util.getEnv('NODE_ENV'));
+logger.info("Controllers: %s", controllerPath);
+logger.info("Interceptors: %s", interceptorPath);
 logger.info("Models: %s", modelPath);
 logger.info("Services: %s", servicePath);
-logger.info("Interceptors: %s", interceptorPath);
-logger.info("Controllers: %s", controllerPath);
-
+logger.info("Public Resources: %s", publicResourcesPath);
 
 //
 // Instantiate Express Framework
@@ -126,13 +143,14 @@ var options = {
 	lastModified: true,
 	redirect: false
 };
-app.use("/public/", express.static('public', options));
+app.use('/public', express.static(publicResourcesPath, options));
 
 
 //
 // View Rendering Engine
 //
 app.engine('dust', adaro.dust());
+app.set('views', viewsPath);
 app.set('view engine', 'dust');
 
 

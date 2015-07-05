@@ -2,7 +2,7 @@
 
 NodeSpeed is a full stack application framework powered by Node.js. NodeSpeed helps you rapidly build
 mature REST APIs or micro-services in Node.js. It brings together the 'best of breed' components
-from the NPM community so that you accelerate your journey to building Node-powered middlewares and REST 
+from the NPM community so that you accelerate your development of Node-powered middlewares and REST 
 services.
 
 ## Framework Structure

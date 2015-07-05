@@ -42,8 +42,32 @@ function fetchAllUsers(req, res, next) {
 
 }
 
+//
+// Render View: All Users
+//
+function renderAllUsers(req, res, next) {
+
+	// Request Trace
+	logger.debug("Sign Up: Req UUID: " + req.uuid);
+	logger.debug("Sign Up: Device Type" + JSON.stringify(req.device));
+	logger.debug("Cookies: " + util.inspect(req.cookies));
+	logger.debug("Body: " + util.inspect(req.body));
+
+	// Delegate to Service
+	userService.fetchAllUsers(function cb(users) {
+
+		// Render view
+		res.render("users", {"userList": users});
+		return;		
+
+	});
+
+}
+
+
 // Interface
 module.exports = {
 	"init": init,
-	"fetchAllUsers": fetchAllUsers
+	"fetchAllUsers": fetchAllUsers,
+	"renderAllUsers": renderAllUsers
 }

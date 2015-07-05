@@ -8,6 +8,11 @@
 			"requestUri": "/user/fetchAll",
 			"httpMethod": "get",
 			"handler": "/v1/MyController.fetchAllUsers"
-		}	
+		},
+		{
+			"requestUri": "/user/renderAll",
+			"httpMethod": "get",
+			"handler": "/v1/MyController.renderAllUsers"
+		}			
 	]
 }
