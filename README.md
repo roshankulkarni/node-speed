@@ -1,15 +1,9 @@
 # NodeSpeed Framework
 
-## Wishlist
-
-+ Version Support in Controllers
-+ Domain
-+ Utility to Validate Recursive JSON
-+ Utility to Map Recursive JSON
-+ Connectors (Third Party Calls)
-+ Front Layer Caching (Redis)
-+ HTTP Request Logs / Audit Logs / Log Request
-+ Request Stats
+NodeSpeed is a full stack application framework powered by Node.js. NodeSpeed helps you rapidly build
+mature REST APIs or micro-services in Node.js. It brings together the 'best of breed' components
+from the NPM community so that you accelerate your journey to building Node-powered middlewares and REST 
+services.
 
 ## Framework Structure
 
@@ -91,6 +85,19 @@ To install nodemon globally:
 To run nodemon for your app:
 
 	$ nodemon app.js
+
+
+## Wishlist
+
++ Version Support in Controllers
++ Domain
++ Utility to Validate Recursive JSON
++ Utility to Map Recursive JSON
++ Connectors (Third Party Calls)
++ Front Layer Caching (Redis)
++ HTTP Request Logs / Audit Logs / Log Request
++ Request Stats
+
 
 ## Authors
 
