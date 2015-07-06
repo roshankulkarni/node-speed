@@ -97,6 +97,13 @@ global.app = app;
 
 
 //
+// Middleware: Wrap all requests in a domain to be able to handle any async failures in those.
+//
+var errorHandler = require("./framework/middleware/ErrorHandler");
+app.use(errorHandler.domainWrappingMiddleware);
+
+
+//
 // Middleware: Cookie Parser.
 // Parses the HTTP Header Cookies and populates the 'req.cookies' having name-value pairs.
 // {cookieName: cookieValue, ...}
@@ -196,29 +203,9 @@ app.get("/sys/health/ping", function(req, res) {
 
 
 //
-// Middleware: Catch-All Error Handler.
-// So that we log errors, but don't leak internal error details to the client.
+// Middleware: Catch-All error handler in express.
 //
-app.use(errorHandler);
-
-function errorHandler(err, req, res, next) {
-
-	// XHR Request?
-	if (req.xhr) {
-		logger.error(err);
-		res.status(500).send({ error: 'Internal Error Occured.' });
-		return;
-	}
-
-	// Not a XHR Request.
-	logger.error(err);
-	res.status(500);
-	res.render('framework/error', { error: "Internal Server Error." });
-
-	// Note: No need to call next() as the buck stops here.
-	return;
-	
-}
+app.use(errorHandler.errorHandlingMiddleware);
 
 
 //

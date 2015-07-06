@@ -9,6 +9,11 @@
 			"requestUri": "/user/fetchAll",
 			"httpMethod": "get",
 			"handler": "/MyController.fetchAllUsers"
-		}	
+		},
+		{
+			"requestUri": "/user/buggyMethod",
+			"httpMethod": "get",
+			"handler": "/MyController.buggyMethod"
+		}
 	]
 }

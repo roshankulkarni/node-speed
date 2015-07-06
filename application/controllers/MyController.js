@@ -42,8 +42,31 @@ function fetchAllUsers(req, res, next) {
 
 }
 
+//
+// REST API: Intentionally buggy method to test error handling in the framework.
+//
+function buggyMethod(req, res, next) {
+
+	if (Math.random() > 0.5) {
+		logger.debug("FooBar triggered.");
+		foo.bar();
+	}
+
+	setTimeout(function() {
+		if (Math.random() > 0.5) {
+			logger.debug("Error triggered after timeout");
+			throw new Error('Asynchronous error from timeout');
+		} else {
+			logger.debug("Success message triggered after timeout");
+			res.end('Hello from Connect!');
+		}
+	}, 100);
+
+}
+
 // Interface
 module.exports = {
 	"init": init,
-	"fetchAllUsers": fetchAllUsers
+	"fetchAllUsers": fetchAllUsers,
+	"buggyMethod": buggyMethod
 }
