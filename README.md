@@ -41,10 +41,12 @@ Directory                       | Purpose
 + Initialize Logger
 + Create Express App
 + Mount Middlewares:
+  + Domain Handler Middleware (Async errors during request processing)
   + Cookie Parser
   + Body Parser
   + Request Tagger
   + User Agent Identifier
+  + Catch-all error handling middleware (Sync errors during request processing)
 + Configure DUST Template Engine
 + Instantiate All the Defined Mongo Models
 + Instantiate All Services
