@@ -7,7 +7,12 @@
 		{
 			"requestUri": "/user/fetchAll",
 			"httpMethod": "get",
-			"handler": "/v1/MyController.fetchAllUsers"
+			"handler": "/v1/MyController.fetchAllUsers",
+			"validationRules": {
+				"cookies.asgardTheme": {
+					"presence": true
+				}
+			}			
 		},
 		{
 			"requestUri": "/user/renderAll",

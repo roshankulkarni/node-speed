@@ -14,6 +14,7 @@ var path = require('path');
 var express = require("express");
 var stripJsonComments = require('strip-json-comments');
 var _ = require('underscore');
+var validatorFactory = require('./ValidatorFactory.js')
 
 // Logger
 var logger = log4js.getLogger('ControllerFactory');
@@ -183,10 +184,17 @@ function mountRoutes(routeConfigFile) {
 			logger.error("Bad Handler Method: %s", handlerName);
 			continue;
 		}
+
+		// Mount validator middleware at this URI
+		logger.info("Mounting Validator At: [%s] [%s]", routeUri, httpMethod);
+		var validationMiddleware = validatorFactory.getValidator(routeDef);
+		var validationRouter = express.Router();
+		validationRouter[httpMethod](routeUri, validationMiddleware);
+		global.app.use(validationRouter);
  
-		// Mount route
+		// Mount the main route
 		logger.info("Mounting: [%s] [%s] %s", routeUri, httpMethod, handlerName);
-		var router = express.Router();
+		var router = express.Router({"foo": "bar"});
 		router[httpMethod](routeUri, method);
 		global.app.use(router);
 

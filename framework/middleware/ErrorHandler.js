@@ -1,8 +1,8 @@
 //
 // Middleware to wrap requests in domain and to ensure solid error handling.
 // In case of uncaught exceptions or domain errors, the recommended way is to 
-// initiate a graceful shutdown of this process. (Forever, PM2 or something else)
-// will respawn a new process worker process using the cluster module in that case.
+// initiate a graceful shutdown of this process. And then, Forever, PM2 or something else
+// will respawn a new process worker process using the cluster module.
 //
 // @author Roshan Kulkarni, Mindstix Labs
 //
@@ -17,7 +17,7 @@ var logger = log4js.getLogger('ApplicationBootstrap');
 
 //
 // Middleware: This middleware function wraps each request within a domain.
-// Gets invoked only when errors occur asynchronously.
+// The domain's "on error" handler gets invoked only when errors occur asynchronously.
 //
 function domainWrappingMiddleware(req, res, next) {
 

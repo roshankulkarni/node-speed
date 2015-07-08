@@ -106,13 +106,12 @@ To run nodemon for your app:
 
 ## Wishlist
 
-+ Wrapping Requests in Domain
 + Utility to Validate Recursive JSON
 + Front Validation Strategies for Inbound Requests
 + Connectors (Third Party Calls)
 + Front Layer Caching (Redis)
 + HTTP Request Logs / Audit Logs / Log Request
-+ Request Stats
++ Request Stats Tracking
 + Utility to Map Recursive JSON
 
 

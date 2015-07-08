@@ -21,6 +21,7 @@
     "body-parser": "~1.12.4",
     "mongoose": "~4.0.5",
     "underscore": "~1.8.3",
-    "strip-json-comments": "~1.0.2"
+    "strip-json-comments": "~1.0.2",
+    "joi": "~6.5.0"
   }
 }

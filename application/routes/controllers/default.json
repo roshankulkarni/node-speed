@@ -8,7 +8,8 @@
 		{
 			"requestUri": "/user/fetchAll",
 			"httpMethod": "get",
-			"handler": "/MyController.fetchAllUsers"
+			"handler": "/MyController.fetchAllUsers",
+			"validatorSchema": "/fetchAllUsers"
 		},
 		{
 			"requestUri": "/user/buggyMethod",

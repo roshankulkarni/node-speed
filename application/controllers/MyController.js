@@ -28,17 +28,22 @@ function fetchAllUsers(req, res, next) {
 	// Request Trace
 	logger.debug("Sign Up: Req UUID: " + req.uuid);
 	logger.debug("Sign Up: Device Type" + JSON.stringify(req.device));
+	logger.debug("Headers: " + JSON.stringify(req.headers));
 	logger.debug("Cookies: " + util.inspect(req.cookies));
 	logger.debug("Body: " + util.inspect(req.body));
 
 	// Delegate to Service
-	userService.fetchAllUsers(function cb(users){
+	userService.fetchAllUsers(function cb(users) {
 
 		// Generate REST Response
 		res.json(users);
 		return;		
 
 	});
+
+}
+
+function fetchAllUsersValidator(req, res, next) {
 
 }
 
