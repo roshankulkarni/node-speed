@@ -5,11 +5,13 @@ enterprise-grade REST APIs or micro services in Node.js. It brings together the 
 from the NPM community so that you accelerate your development of Node-powered middlewares and REST 
 services.
 
-## Framework Structure
 
-Below is the list of capabilities supported by the Node Speed framework:
+## Features
+
+NodeSpeed supports the following powerful set of features:
 
 + Controllers to Handle Inbound Requests (Route Mappings to Controllers)
++ A Powerful Request Validation Framework
 + Custom Request Interceptors
 + Services Layer (To Encapsulate Your Business Logic)
 + MongoDB Integration
@@ -20,6 +22,7 @@ Below is the list of capabilities supported by the Node Speed framework:
 + Delivery of Static Assets
 + Tagging All Inbound Requests
 + Identifying Client Device Types
+
 
 ## Application Structure
 
@@ -173,13 +176,22 @@ To run nodemon for your app:
 	$ nodemon app.js
 
 
-## Wishlist
+## Backlog Features and Wishlist
 
-+ Connectors (Third Party Calls)
 + Front Layer Caching (Redis)
 + HTTP Request Logs / Audit Logs / Log Request
-+ Request Stats Tracking
 + Utility to Map Recursive JSON
++ File Management APIs
++ Role Based Access Control
++ Request Stats Tracking
++ Audit Logs
++ Business Object Caching
++ Service Orchestration
++ Connectors (Third Party Calls):
+  + SOAP
+  + REST
+  + Email
+  + AD
 
 
 ## Authors
