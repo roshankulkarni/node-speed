@@ -23,13 +23,14 @@ Below is the list of capabilities supported by the Node Speed framework:
 
 ## Application Structure
 
-Directory                       | Purpose
--------------------------------|----------------------------
+Directory                     | Purpose
+------------------------------|----------------------------
 /application/config/          | Config files.                           
 /application/routes/          | Route definitions for controllers and interceptors.                           
-/application/controllers/     | Controllers.                           
 /application/interceptors/    | Request interceptors.
-/application/services/        | Services to encapsulate business logic.                           
+/application/validators/      | Request validation schema files.
+/application/controllers/     | Controller files.
+/application/services/        | Services to encapsulate your business logic.                           
 /application/models/          | Mongoose schema and model definitions.                           
 /application/views/           | Dust template views.
 /application/public/          | Public static assets (CSS, JS, Images).
@@ -53,6 +54,26 @@ Directory                       | Purpose
 + Mount Request Interceptors (Based on Interceptor Definitions)
 + Mount Validation Middleware (Based on Route Definitions)
 + Mount Controllers (Based on Route Definitions)
+
+
+## Route Definition
+
+Route definition specifies how an inbound request should be mapped to a specific controller. Routes are
+defined in the /application/routes/controllers/ directory and a typical route definition looks like this:
+
+	{
+		"requestUri": "/user/fetchAll",
+		"httpMethod": "get",
+		"handler": "/MyController.fetchAllUsers",
+		"validatorSchema": "/fetchAllUsers"
+	}
+
+Key                 | Purpose
+------------------------------|----------------------------
+requestUri          | Inbound request URI to be matched.
+httpMethod          | HTTP method (GET, POST, PUT, DELETE etc.)
+handler          	| Name of the controller module and method in /application/controllers
+validatorSchema     | Name of the validator file in /application/validators/
 
 
 ## Request Validation Framework
