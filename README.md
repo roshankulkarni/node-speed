@@ -50,8 +50,50 @@ Directory                       | Purpose
 + Configure DUST Template Engine
 + Instantiate All the Defined Mongo Models
 + Instantiate All Services
-+ Mount Interceptors (Based on Route Definitions)
++ Mount Request Interceptors (Based on Interceptor Definitions)
++ Mount Validation Middleware (Based on Route Definitions)
 + Mount Controllers (Based on Route Definitions)
+
+
+## Request Validation Framework
+
+'Front Validation' is a powerful tactic for defensive programming which helps you write robust web services. 
+NodeSpeed strongly encourages you to define validation rules for each REST API that you implement. It provides 
+you a way to specify front-validation rules along with route that is defined in your application.
+
+Validation rules are specified using a 'Object Schema Definition'. We use the powerful 
+Joi framework which offer Object-schema based validations.
+
+Validation rules (schemas) can be put in this directory:
+	application/validators/
+
+Each such schema file specifies the validation rules using the Joi schema format. For example:
+	var Joi = require('joi');
+	module.exports = {
+		cookies: {
+			myCustomCookie: Joi.string().valid("someValue")
+		}
+	};
+
+Once you create the validation schema file, you can associate this validation rule with a route by specifying the
+"validatorSchema" key in the route definition:
+	"routes": [
+		{
+			"requestUri": "/user/fetchAll",
+			"httpMethod": "get",
+			"handler": "/MyController.fetchAllUsers",
+			"validatorSchema": "/fetchAllUsers"
+		}
+	]
+
+This validation framework allows you to validate several parts of the inbound request as given below:
+
+Keys with Validation Schema    | Purpose
+-------------------------------|----------------------------
+params 						   | Validate contents of named URI segments
+query 						   | Validate contents of query string parameters
+cookie 						   | Validate contents of cookies
+body 						   | Validate contents of request body
 
 
 ## Framework Dependencies
@@ -71,6 +113,9 @@ http://expressjs.com/
 
 ###4. Underscore JS:
 http://underscorejs.org/
+
+##5. Joi Object Schema Validation Framework:
+https://github.com/hapijs/joi
 
 ###5. Adaro for Dust Templates:
 https://github.com/krakenjs/adaro
@@ -106,8 +151,6 @@ To run nodemon for your app:
 
 ## Wishlist
 
-+ Utility to Validate Recursive JSON
-+ Front Validation Strategies for Inbound Requests
 + Connectors (Third Party Calls)
 + Front Layer Caching (Redis)
 + HTTP Request Logs / Audit Logs / Log Request
