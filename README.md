@@ -49,7 +49,7 @@ Directory                       | Purpose
   + Catch-all error handling middleware (Sync errors during request processing)
 + Configure DUST Template Engine
 + Instantiate All the Defined Mongo Models
-+ Instantiate All Services
++ Instantiate All Service Layer Modules
 + Mount Request Interceptors (Based on Interceptor Definitions)
 + Mount Validation Middleware (Based on Route Definitions)
 + Mount Controllers (Based on Route Definitions)
@@ -58,16 +58,18 @@ Directory                       | Purpose
 ## Request Validation Framework
 
 'Front Validation' is a powerful tactic for defensive programming which helps you write robust web services. 
-NodeSpeed strongly encourages you to define validation rules for each REST API that you implement. It provides 
-you a way to specify front-validation rules along with route that is defined in your application.
+NodeSpeed strongly encourages you to define validation rules for each REST API that you implement. 
 
-Validation rules are specified using a 'Object Schema Definition'. We use the powerful 
+For each route defined in your application, you can specify a bunch of validation rules which are to be applied 
+when the HTTP request hits the framework. Validation rules are specified using a 'Object Schema Definition'. We use the powerful 
 Joi framework which offer Object-schema based validations.
 
 Validation rules (schemas) can be put in this directory:
+
 	application/validators/
 
 Each such schema file specifies the validation rules using the Joi schema format. For example:
+
 	var Joi = require('joi');
 	module.exports = {
 		cookies: {
@@ -77,6 +79,7 @@ Each such schema file specifies the validation rules using the Joi schema format
 
 Once you create the validation schema file, you can associate this validation rule with a route by specifying the
 "validatorSchema" key in the route definition:
+
 	"routes": [
 		{
 			"requestUri": "/user/fetchAll",
@@ -88,7 +91,7 @@ Once you create the validation schema file, you can associate this validation ru
 
 This validation framework allows you to validate several parts of the inbound request as given below:
 
-Keys with Validation Schema    | Purpose
+Keys in the Validation Schema  | Purpose
 -------------------------------|----------------------------
 params 						   | Validate contents of named URI segments
 query 						   | Validate contents of query string parameters
